@@ -4,9 +4,9 @@ import {Box} from "./Box";
 export const List = () => {
   console.log("testData", testData);
   return (
-    <div>
+    <div className="List">
       {testData.data.children.map((item) => (
-          <Box/>
+          <Box item={item}/>
       ))}
     </div>
   );
