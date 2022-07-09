@@ -1,12 +1,21 @@
-import { testData } from "../testdata";
-import {Box} from "./Box";
+import { useEffect,useState } from "react";
+import { Box } from "./Box";
+const axios = require("axios").default;
 
 export const List = () => {
-  console.log("testData", testData);
+ const [redditData, setRedditData] = useState(null)
+
+  useEffect(() => {
+    axios.get("https://www.reddit.com/r/Bushwick.json").then((response) => {
+      // handle success
+      setRedditData(response)
+    });
+  }, []);
+
   return (
     <div className="List">
-      {testData.data.children.map((item) => (
-          <Box item={item}/>
+      {redditData && redditData.data.data.children.map((item) => (
+        <Box item={item} />
       ))}
     </div>
   );
