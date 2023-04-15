@@ -1,25 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 import { Box } from "./Box";
 const axios = require("axios").default;
 
 export const List = () => {
- const [redditPosts, setRedditPosts] = useState()
+ const [redditData, setRedditData] = useState(null)
 
   useEffect(() => {
-      if(!redditPosts){
-        axios.get(`https://www.reddit.com/r/Bushwick.json`).then((res) => {
-            const data = res.data;
-            console.log(data.data.children);
-            setRedditPosts(data.data.children)
-      
-          });
-      }
-   
-  });
+    axios.get("https://www.reddit.com/r/Bushwick.json").then((response) => {
+      // handle success
+      setRedditData(response)
+    });
+  }, []);
 
-//console.log('redditPosts', redditPosts)
-
-  return <Box />;
+  return (
+    <div className="List">
+      {redditData && redditData.data.data.children.map((item) => (
+        <Box item={item} />
+      ))}
+    </div>
+  );
 };
-
-{}

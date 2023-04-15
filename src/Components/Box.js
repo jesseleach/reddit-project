@@ -1,9 +1,8 @@
-export const Box = ({ redditPost }) => {
+export const Box = ({ item }) => {
   return (
-    <div>
-      <h3>{redditPost.data.title}</h3>
-      <p>{redditPost.data.selftext}</p>
-      <p>{redditPost.data.created}</p>
+    <div className="Box">
+      <h2>{item.data.title}</h2>
+      <div >{item.data.selftext}</div>;
     </div>
   );
 };
